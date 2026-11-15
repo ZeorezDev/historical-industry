@@ -4,6 +4,11 @@
     "historical_industry:coal_generator",
     "historical_industry:industrial_furnace",
     "historical_industry:machine_workshop",
-    "historical_industry:textile_factory"
+    "historical_industry:textile_factory",
+    "historical_industry:rolling_mill",
+    "historical_industry:heavy_assembly_plant",
+    "historical_industry:industrial_warehouse",
+    "historical_industry:industrial_conveyor",
+    "historical_industry:railway_loading_dock"
   ]
 }

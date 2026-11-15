@@ -24,12 +24,14 @@ public final class ClientAssets {
         done=true;
         try {
             var manager=client.getModelManager();
-            for (String name:List.of("coal_generator","industrial_furnace","machine_workshop","textile_factory")) {
+            for (String name:List.of("coal_generator","industrial_furnace","machine_workshop","textile_factory","rolling_mill","heavy_assembly_plant","industrial_warehouse","industrial_conveyor","railway_loading_dock")) {
                 var key=new ResourceLocation("historical_industry",name);
                 var block=ForgeRegistries.BLOCKS.getValue(key);
                 for (var state:block.getStateDefinition().getPossibleStates())
                     verify(manager,client.getBlockRenderer().getBlockModel(state),state.toString());
-                verify(manager,manager.getModel(new ResourceLocation("historical_industry","block/"+name+"_drive")),name+" drive");
+                if (!List.of("industrial_warehouse","railway_loading_dock").contains(name))
+                    verify(manager,manager.getModel(new ResourceLocation("historical_industry","block/"+name+"_drive")),name+" drive");
+                if (name.equals("rolling_mill")) verify(manager,manager.getModel(new ResourceLocation("historical_industry","block/rolling_mill_counter")),name+" counter");
                 verify(manager,manager.getModel(new ModelResourceLocation(key,"inventory")),name+" item");
             }
             LogUtils.getLogger().info("INDUSTRY PASS clientAssets");

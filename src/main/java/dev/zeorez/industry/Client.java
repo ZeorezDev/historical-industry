@@ -19,7 +19,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(modid=Industry.ID, value=Dist.CLIENT, bus=Mod.EventBusSubscriber.Bus.MOD)
 public final class Client {
     @SubscribeEvent public static void models(ModelEvent.RegisterAdditional event) {
-        for (Kind kind : Kind.values()) event.register(Industry.id("block/"+kind.id()+"_drive"));
+        for (Kind kind : Kind.values()) if (kind.animated()) event.register(Industry.id("block/"+kind.id()+"_drive"));
+        event.register(Industry.id("block/rolling_mill_counter"));
     }
     @SubscribeEvent public static void renderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(Industry.MACHINE.get(),ctx -> new DriveRenderer());
@@ -37,7 +38,16 @@ public final class Client {
             pose.translate(-0.5,0,-0.5);
             double wave=Math.sin(phase*Math.PI*2);
             switch(machine.kind) {
-                case MACHINE_WORKSHOP -> pose.translate(0,-(1+wave)*0.042,0);
+                case ROLLING_MILL -> {
+                    pose.pushPose();
+                    roll(pose,6,360*phase);
+                    draw(client,pose,buffer,state,model,light,overlay);
+                    pose.popPose();
+                    roll(pose,10.5,-360*phase);
+                    model=client.getModelManager().getModel(Industry.id("block/rolling_mill_counter"));
+                }
+                case INDUSTRIAL_CONVEYOR -> pose.translate(0,0,-(phase*5%1)*2/16);
+                case MACHINE_WORKSHOP, HEAVY_ASSEMBLY_PLANT -> pose.translate(0,-(1+wave)*0.042,0);
                 case TEXTILE_FACTORY -> pose.translate(wave*0.12,0,0);
                 default -> {
                     double x=(machine.kind==Kind.COAL_GENERATOR ? 11.6 : 3.4)/16;
@@ -47,9 +57,18 @@ public final class Client {
                     pose.translate(-x,-y,0);
                 }
             }
+            draw(client,pose,buffer,state,model,light,overlay);
+            pose.popPose();
+        }
+        private void roll(PoseStack pose,double z,float degrees) {
+            pose.translate(0,9.0/16,z/16);
+            pose.mulPose(Axis.XP.rotationDegrees(degrees));
+            pose.translate(0,-9.0/16,-z/16);
+        }
+        private void draw(Minecraft client,PoseStack pose,MultiBufferSource buffer,net.minecraft.world.level.block.state.BlockState state,
+                          net.minecraft.client.resources.model.BakedModel model,int light,int overlay) {
             client.getBlockRenderer().getModelRenderer().renderModel(pose.last(),buffer.getBuffer(Sheets.solidBlockSheet()),
                     state,model,1,1,1,light,overlay);
-            pose.popPose();
         }
     }
     @SubscribeEvent public static void setup(FMLClientSetupEvent event) {
@@ -67,6 +86,7 @@ public final class Client {
             }
             int energy=menu.data.get(0),progress=menu.data.get(1),duration=menu.data.get(2);
             g.drawString(font,energy+" / "+Machine.CAPACITY+" FE",x+8,y+23,0xff293731,false);
+            g.drawString(font,Component.translatable("industry.upgrade"),x+148-font.width(Component.translatable("industry.upgrade")),y+21,0xff293731,false);
             g.fill(x+80,y+49,x+117,y+53,0xff62645b);
             if(duration>0) g.fill(x+80,y+49,x+80+37*progress/duration,y+53,0xffb46631);
         }

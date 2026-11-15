@@ -28,12 +28,14 @@ public final class Industry {
     static final RegistryObject<RecipeType<ProcessRecipe>> PROCESS = TYPES.register("process", () -> new RecipeType<>() {});
     static final RegistryObject<ProcessRecipe.Serializer> CODEC = SERIALIZERS.register("process", ProcessRecipe.Serializer::new);
 
+    static final RegistryObject<Item> SPEED = ITEMS.register("speed_upgrade", () -> new Item(new Item.Properties().stacksTo(1)));
+    static final RegistryObject<Item> EFFICIENCY = ITEMS.register("efficiency_upgrade", () -> new Item(new Item.Properties().stacksTo(1)));
     public Industry() {
         for (Kind kind : Kind.values()) {
-            var block = BLOCKS.register(kind.id(), () -> new MachineBlock(kind));
+            var block = BLOCKS.register(kind.id(), () -> kind==Kind.RAILWAY_LOADING_DOCK ? new DockBlock() : new MachineBlock(kind));
             ITEMS.register(kind.id(), () -> new BlockItem(block.get(), new Item.Properties()));
         }
-        for (String item : new String[]{"steel_ingot", "machine_parts", "textile"})
+        for (String item : new String[]{"steel_ingot", "machine_parts", "textile", "steel_plate", "industrial_component"})
             ITEMS.register(item, () -> new Item(new Item.Properties()));
         var bus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(bus);

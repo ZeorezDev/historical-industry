@@ -1,0 +1,492 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "historical_industry:block/industrial_conveyor",
+    "machine": "historical_industry:block/industrial_conveyor"
+  },
+  "elements": [
+    {
+      "name": "drive_steel_cleat_2",
+      "from": [
+        3.6,
+        6.4,
+        2
+      ],
+      "to": [
+        12.4,
+        6.8,
+        2.55
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            2.75,
+            5,
+            3.875,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            5,
+            5,
+            5.125,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            3.875,
+            5,
+            5,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            5.125,
+            5,
+            5.25,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            5.25,
+            5,
+            6.375,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            6.375,
+            5,
+            7.5,
+            5.125
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_steel_cleat_4",
+      "from": [
+        3.6,
+        6.4,
+        4
+      ],
+      "to": [
+        12.4,
+        6.8,
+        4.55
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7.625,
+            5,
+            8.75,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            9.875,
+            5,
+            10,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            8.75,
+            5,
+            9.875,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            10,
+            5,
+            10.125,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            10.125,
+            5,
+            11.25,
+            5.125
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            11.25,
+            5,
+            12.375,
+            5.125
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_steel_cleat_6",
+      "from": [
+        3.6,
+        6.4,
+        6
+      ],
+      "to": [
+        12.4,
+        6.8,
+        6.55
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            5.375,
+            1.125,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            2.25,
+            5.375,
+            2.375,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            1.125,
+            5.375,
+            2.25,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            2.375,
+            5.375,
+            2.5,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            2.5,
+            5.375,
+            3.625,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            3.625,
+            5.375,
+            4.75,
+            5.5
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_steel_cleat_8",
+      "from": [
+        3.6,
+        6.4,
+        8
+      ],
+      "to": [
+        12.4,
+        6.8,
+        8.55
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4.875,
+            5.375,
+            6,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            7.125,
+            5.375,
+            7.25,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            6,
+            5.375,
+            7.125,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            7.25,
+            5.375,
+            7.375,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            7.375,
+            5.375,
+            8.5,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            8.5,
+            5.375,
+            9.625,
+            5.5
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_steel_cleat_10",
+      "from": [
+        3.6,
+        6.4,
+        10
+      ],
+      "to": [
+        12.4,
+        6.8,
+        10.55
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            9.75,
+            5.375,
+            10.875,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            12,
+            5.375,
+            12.125,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            10.875,
+            5.375,
+            12,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            12.125,
+            5.375,
+            12.25,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            12.25,
+            5.375,
+            13.375,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            13.375,
+            5.375,
+            14.5,
+            5.5
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_steel_cleat_12",
+      "from": [
+        3.6,
+        6.4,
+        12
+      ],
+      "to": [
+        12.4,
+        6.8,
+        12.55
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            5.625,
+            1.125,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            2.25,
+            5.625,
+            2.375,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            1.125,
+            5.625,
+            2.25,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            2.375,
+            5.625,
+            2.5,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            2.5,
+            5.625,
+            3.625,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            3.625,
+            5.625,
+            4.75,
+            5.75
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_steel_cleat_14",
+      "from": [
+        3.6,
+        6.4,
+        14
+      ],
+      "to": [
+        12.4,
+        6.8,
+        14.55
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4.875,
+            5.625,
+            6,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            7.125,
+            5.625,
+            7.25,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            6,
+            5.625,
+            7.125,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            7.25,
+            5.625,
+            7.375,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            7.375,
+            5.625,
+            8.5,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            8.5,
+            5.625,
+            9.625,
+            5.75
+          ],
+          "texture": "#machine"
+        }
+      }
+    }
+  ]
+}

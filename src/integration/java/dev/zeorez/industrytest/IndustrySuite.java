@@ -44,6 +44,34 @@ public final class IndustrySuite {
         if (done || phase.isEmpty() || e.phase!=TickEvent.Phase.END || e.getServer().getTickCount()<40) return;
         server=e.getServer();
         try {
+            if (phase.equals("hopper")) {
+                if (started==0) {
+                    started=server.getTickCount();
+                    a=player("IndustryA",A);
+                    command(a,"town create Essen");
+                    command(a,"town claim");
+                    command(a,"plot set type industrial");
+                    LogisticsChecks.startHopper(this,a,A);
+                } else if (LogisticsChecks.hopperDone(this,a,A)) finish();
+                else check(server.getTickCount()-started<500,"hopper, scheduled conveyor and mill timed out");
+                return;
+            }
+            if (phase.equals("logistics") || phase.equals("freight")) {
+                a=player("IndustryA",A);
+                command(a,"town create Essen");
+                command(a,"nation create Ruhr");
+                command(a,"town claim");
+                command(a,"plot set type industrial");
+                if (phase.equals("freight")) FreightChecks.run(this,a,A);
+                else LogisticsChecks.run(this,a,A);
+                finish();
+                return;
+            }
+            if (phase.equals("storageRestart")) {
+                LogisticsChecks.restart(server.overworld(),A);
+                finish();
+                return;
+            }
             if (phase.equals("territory")) {
                 if (territory()) finish();
                 return;
@@ -97,7 +125,7 @@ public final class IndustrySuite {
         done=true;
         server.halt(false);
     }
-    private static void check(boolean condition,String message) { if (!condition) throw new AssertionError(message); }
+    static void check(boolean condition,String message) { if (!condition) throw new AssertionError(message); }
     private ServerPlayer player(String name,BlockPos pos) {
         var profile=new GameProfile(UUID.nameUUIDFromBytes(("OfflinePlayer:"+name).getBytes(StandardCharsets.UTF_8)),name);
         server.getProfileCache().add(profile);
@@ -120,7 +148,7 @@ public final class IndustrySuite {
         check(server.getCommands().getDispatcher().execute(cmd,source.withSource(out))==1,cmd);
         return out.messages;
     }
-    private List<Component> command(ServerPlayer p,String cmd) throws CommandSyntaxException {
+    List<Component> command(ServerPlayer p,String cmd) throws CommandSyntaxException {
         return execute(p.createCommandSourceStack().withPermission(0),cmd);
     }
     private void setup(ServerPlayer p,String town,String nation,BlockPos pos,String machine,Item one,Item two) throws Exception {
@@ -134,16 +162,16 @@ public final class IndustrySuite {
         check(items(pos).insertItem(0,new ItemStack(one),false).isEmpty(),"input 1");
         check(items(pos).insertItem(1,new ItemStack(two),false).isEmpty(),"input 2");
     }
-    private void place(ServerPlayer p,BlockPos pos,String name) {
+    void place(ServerPlayer p,BlockPos pos,String name) {
         var block=ForgeRegistries.BLOCKS.getValue(id(name));
         var world=p.serverLevel();
         world.setBlockAndUpdate(pos,block.defaultBlockState());
         block.setPlacedBy(world,pos,block.defaultBlockState(),p,new ItemStack(block));
     }
     private BlockEntity machine(BlockPos pos){return Objects.requireNonNull(server.overworld().getBlockEntity(pos));}
-    private IItemHandler items(BlockPos pos){return machine(pos).getCapability(ForgeCapabilities.ITEM_HANDLER,Direction.NORTH).orElseThrow(AssertionError::new);}
+    IItemHandler items(BlockPos pos){return machine(pos).getCapability(ForgeCapabilities.ITEM_HANDLER,Direction.NORTH).orElseThrow(AssertionError::new);}
     private static ResourceLocation id(String n){return new ResourceLocation("historical_industry",n);}
-    private static Item item(String n){return ForgeRegistries.ITEMS.getValue(id(n));}
+    static Item item(String n){return ForgeRegistries.ITEMS.getValue(id(n));}
     private void report(String nation,long steel,long textile) throws Exception {
         var reply=execute(server.createCommandSourceStack(),"industry nation "+nation);
         Map<String,Long> output=new HashMap<>();

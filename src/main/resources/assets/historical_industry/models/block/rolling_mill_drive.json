@@ -1,0 +1,354 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "historical_industry:block/rolling_mill",
+    "machine": "historical_industry:block/rolling_mill"
+  },
+  "elements": [
+    {
+      "name": "drive_steel_barrel",
+      "from": [
+        4,
+        7.2,
+        4.85
+      ],
+      "to": [
+        12,
+        10.8,
+        7.15
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            8.625,
+            3.5,
+            9.625,
+            4
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            10.625,
+            3.5,
+            11,
+            4
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            9.625,
+            3.5,
+            10.625,
+            4
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            11,
+            3.5,
+            11.375,
+            4
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            11.375,
+            3.5,
+            12.375,
+            3.875
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            12.375,
+            3.5,
+            13.375,
+            3.875
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_steel_shoulder_-1",
+      "from": [
+        4,
+        7.85,
+        4.2
+      ],
+      "to": [
+        12,
+        10.15,
+        4.85
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            11,
+            4.25,
+            12,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            13,
+            4.25,
+            13.125,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            12,
+            4.25,
+            13,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            13.125,
+            4.25,
+            13.25,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            13.25,
+            4.25,
+            14.25,
+            4.375
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            14.25,
+            4.25,
+            15.25,
+            4.375
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_steel_shoulder_1",
+      "from": [
+        4,
+        7.85,
+        7.15
+      ],
+      "to": [
+        12,
+        10.15,
+        7.8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            4.875,
+            1,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            2,
+            4.875,
+            2.125,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            1,
+            4.875,
+            2,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            2.125,
+            4.875,
+            2.25,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            2.25,
+            4.875,
+            3.25,
+            5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            3.25,
+            4.875,
+            4.25,
+            5
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_rust_band_4.4",
+      "from": [
+        4.4,
+        10.8,
+        5.2
+      ],
+      "to": [
+        5.1,
+        10.94,
+        6.8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4.875,
+            5.375,
+            5,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            5.125,
+            5.375,
+            5.375,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            5,
+            5.375,
+            5.125,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            5.375,
+            5.375,
+            5.625,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            5.625,
+            5.375,
+            5.75,
+            5.625
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            5.75,
+            5.375,
+            5.875,
+            5.625
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_rust_band_10.7",
+      "from": [
+        10.7,
+        10.8,
+        5.2
+      ],
+      "to": [
+        11.4,
+        10.94,
+        6.8
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            6,
+            5.375,
+            6.125,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            6.25,
+            5.375,
+            6.5,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            6.125,
+            5.375,
+            6.25,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            6.5,
+            5.375,
+            6.75,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            6.75,
+            5.375,
+            6.875,
+            5.625
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            6.875,
+            5.375,
+            7,
+            5.625
+          ],
+          "texture": "#machine"
+        }
+      }
+    }
+  ]
+}

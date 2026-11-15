@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    " B "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:dried_kelp"
+    },
+    "C": {
+      "item": "historical_industry:machine_parts"
+    },
+    "B": {
+      "item": "historical_industry:steel_ingot"
+    }
+  },
+  "result": {
+    "item": "historical_industry:industrial_conveyor",
+    "count": 4
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SCS",
+    " B "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:spruce_planks"
+    },
+    "C": {
+      "item": "minecraft:chest"
+    },
+    "B": {
+      "item": "historical_industry:steel_ingot"
+    }
+  },
+  "result": {
+    "item": "historical_industry:industrial_warehouse",
+    "count": 1
+  }
+}
