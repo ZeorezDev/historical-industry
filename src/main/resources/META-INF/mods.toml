@@ -3,7 +3,7 @@ loaderVersion="[47,48)"
 license="GPL-3.0-only"
 [[mods]]
 modId="historical_industry"
-version="0.1.0"
+version="0.2.0"
 displayName="Historical Industry"
 description="Industrial production and national output for Historical Nations Core."
 [[dependencies.historical_industry]]
@@ -22,5 +22,11 @@ side="BOTH"
 modId="historical_nations"
 mandatory=true
 versionRange="[0.6.0]"
+ordering="AFTER"
+side="BOTH"
+[[dependencies.historical_industry]]
+modId="historical_railways"
+mandatory=false
+versionRange="[0.1.0]"
 ordering="AFTER"
 side="BOTH"

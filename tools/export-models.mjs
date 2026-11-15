@@ -7,6 +7,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const assets = path.join(root,'src/main/resources/assets/historical_industry');
 for (const filename of fs.readdirSync(path.join(root,'models')).filter(n => n.endsWith('.bbmodel'))) {
     const name = path.basename(filename,'.bbmodel');
+    if (process.argv.length>2 && !process.argv.slice(2).includes(name)) continue;
     const model = JSON.parse(fs.readFileSync(path.join(root,'models',filename),'utf8'));
     const texture = 'historical_industry:block/'+name;
     const dir = path.join(assets,'models/block');
@@ -26,10 +27,13 @@ for (const filename of fs.readdirSync(path.join(root,'models')).filter(n => n.en
     const save = (suffix,selected) => fs.writeFileSync(path.join(dir,name+suffix+'.json'),
         JSON.stringify({parent:'minecraft:block/block',textures:{particle:texture,machine:texture},elements:selected},null,2)+'\n');
     save('',elements);
-    const drive = model.groups.find(group => group.name==='drive');
-    const moving = new Set(model.outliner.find(group => group.uuid===drive.uuid).children);
-    save('_running',elements.filter((_,i) => !moving.has(model.elements[i].uuid)));
-    save('_drive',elements.filter((_,i) => moving.has(model.elements[i].uuid)));
+    const moving = new Set();
+    for (const group of model.groups.filter(g => ['drive','counter'].includes(g.name))) {
+        const ids=new Set(model.outliner.find(g => g.uuid===group.uuid).children);
+        save('_'+group.name,elements.filter((_,i) => ids.has(model.elements[i].uuid)));
+        for (const id of ids) moving.add(id);
+    }
+    if (moving.size) save('_running',elements.filter((_,i) => !moving.has(model.elements[i].uuid)));
     const source=model.textures[0].source;
     if (!source.startsWith('data:image/png;base64,')) throw Error('Missing embedded PNG: '+filename);
     fs.writeFileSync(path.join(assets,'textures/block',name+'.png'),Buffer.from(source.split(',')[1],'base64'));

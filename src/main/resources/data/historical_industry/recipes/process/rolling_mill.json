@@ -1,0 +1,18 @@
+{
+  "type": "historical_industry:process",
+  "machine": "rolling_mill",
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "historical_industry:steel_ingot"
+      },
+      "count": 1
+    }
+  ],
+  "ticks": 120,
+  "fe_per_tick": 24,
+  "result": {
+    "item": "historical_industry:steel_plate",
+    "count": 1
+  }
+}

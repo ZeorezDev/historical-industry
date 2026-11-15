@@ -1,0 +1,24 @@
+{
+  "type": "historical_industry:process",
+  "machine": "heavy_assembly_plant",
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "historical_industry:steel_plate"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "item": "historical_industry:machine_parts"
+      },
+      "count": 1
+    }
+  ],
+  "ticks": 240,
+  "fe_per_tick": 48,
+  "result": {
+    "item": "historical_industry:industrial_component",
+    "count": 1
+  }
+}

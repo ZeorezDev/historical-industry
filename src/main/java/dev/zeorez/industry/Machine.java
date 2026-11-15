@@ -27,7 +27,11 @@ final class Machine extends BlockEntity implements MenuProvider {
     private UUID owner, town, plot, parcel;
     private ResourceLocation recipeId;
     private int energy, progress, duration, burnPower;
-    final ItemStackHandler slots = new ItemStackHandler(3) {
+    final ItemStackHandler slots;
+    // Kept separate so the three legacy inventory indices and their serialized size stay stable.
+    final ItemStackHandler upgrade = new ItemStackHandler(1) {
+        public int getSlotLimit(int slot) { return 1; }
+        public boolean isItemValid(int slot, ItemStack stack) { return !kind.logistics() && Upgrade.accepts(stack); }
         protected void onContentsChanged(int slot) { setChanged(); }
     };
     private final EnumMap<Direction,LazyOptional<IItemHandler>> itemPorts = new EnumMap<>(Direction.class);
@@ -41,6 +45,16 @@ final class Machine extends BlockEntity implements MenuProvider {
     Machine(BlockPos pos, BlockState state) {
         super(Industry.MACHINE.get(),pos,state);
         kind = ((MachineBlock)state.getBlock()).kind;
+        int size = switch (kind) {
+            case INDUSTRIAL_WAREHOUSE -> 54;
+            case INDUSTRIAL_CONVEYOR -> 1;
+            case RAILWAY_LOADING_DOCK -> 0;
+            default -> 3;
+        };
+        slots = new ItemStackHandler(size) {
+            public int getSlotLimit(int slot) { return kind==Kind.INDUSTRIAL_CONVEYOR ? 1 : super.getSlotLimit(slot); }
+            protected void onContentsChanged(int slot) { setChanged(); }
+        };
     }
     void bind(ServerPlayer player) {
         var site = Land.site(player.serverLevel(),worldPosition);
@@ -54,14 +68,14 @@ final class Machine extends BlockEntity implements MenuProvider {
     UUID town() { return town; }
     @Override public void onLoad() {
         super.onLoad();
-        if (level instanceof ServerLevel w) Production.get(w.getServer()).loaded.add(this);
+        if (!kind.logistics() && level instanceof ServerLevel w) Production.get(w.getServer()).loaded.add(this);
     }
     @Override public void setRemoved() {
-        if (level instanceof ServerLevel w) Production.get(w.getServer()).loaded.remove(this);
+        if (!kind.logistics() && level instanceof ServerLevel w) Production.get(w.getServer()).loaded.remove(this);
         super.setRemoved();
     }
     @Override public void onChunkUnloaded() {
-        if (level instanceof ServerLevel w) Production.get(w.getServer()).loaded.remove(this);
+        if (!kind.logistics() && level instanceof ServerLevel w) Production.get(w.getServer()).loaded.remove(this);
         super.onChunkUnloaded();
     }
     UUID owner() { return owner; }
@@ -118,9 +132,13 @@ final class Machine extends BlockEntity implements MenuProvider {
             progress = duration;
             burnPower = r.power();
         }
-        if (CAPACITY-energy < burnPower) return false;
-        energy += burnPower;
-        progress--;
+        var module = upgrade.getStackInSlot(0);
+        int steps = module.is(Upgrade.speed()) ? Math.min(progress,2) : 1;
+        int output = module.is(Upgrade.efficiency()) ? Math.min(CAPACITY,burnPower+burnPower/4) : burnPower;
+        steps = Math.min(steps,(CAPACITY-energy)/Math.max(1,output));
+        if (steps==0) return false;
+        energy += steps*output;
+        progress-=steps;
         setChanged();
         return true;
     }
@@ -134,10 +152,16 @@ final class Machine extends BlockEntity implements MenuProvider {
                 setChanged();
             }
         }
-        if (r == null || !fits(r.output()) || energy < r.power()) return false;
+        if (r == null || !fits(r.output())) return false;
+        var module = upgrade.getStackInSlot(0);
         duration = r.ticks();
-        energy -= r.power();
-        if (++progress >= duration) {
+        int work = module.is(Upgrade.speed()) ? Math.min(2, Math.max(1,duration-progress)) : 1;
+        int cost = module.is(Upgrade.efficiency()) ? (3*r.power()+3)/4 : r.power();
+        if (module.is(Upgrade.speed())) cost = work*r.power() + (r.power()+3)/4;
+        if (energy < cost) return false;
+        energy -= cost;
+        progress += work;
+        if (progress >= duration) {
             consume(r);
             slots.insertItem(2,r.output().copy(),false);
             progress = 0;
@@ -173,17 +197,21 @@ final class Machine extends BlockEntity implements MenuProvider {
         }
     }
     void drop() {
+        Containers.dropItemStack(level,worldPosition.getX()+0.5,worldPosition.getY()+0.5,worldPosition.getZ()+0.5,upgrade.extractItem(0,1,false));
         for (int i=0;i<slots.getSlots();i++)
             Containers.dropItemStack(level,worldPosition.getX()+0.5,worldPosition.getY()+0.5,worldPosition.getZ()+0.5,slots.extractItem(i,64,false));
     }
     public Component getDisplayName() { return getBlockState().getBlock().getName(); }
-    public AbstractContainerMenu createMenu(int id, Inventory inv, Player p) { return new MachineMenu(id,inv,this,slots,display); }
+    public AbstractContainerMenu createMenu(int id, Inventory inv, Player p) {
+        if (kind==Kind.INDUSTRIAL_WAREHOUSE) return new WarehouseMenu(id,inv,this);
+        return new MachineMenu(id,inv,this,slots,upgrade,display);
+    }
     @Override public boolean onlyOpCanSetNbt() { return true; }
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         if (side != null && !isRemoved()) {
-            if (cap == ForgeCapabilities.ITEM_HANDLER) return itemPorts.computeIfAbsent(side,
+            if (cap == ForgeCapabilities.ITEM_HANDLER && kind!=Kind.RAILWAY_LOADING_DOCK) return itemPorts.computeIfAbsent(side,
                     d -> LazyOptional.of(() -> new ItemsPort(d))).cast();
-            if (cap == ForgeCapabilities.ENERGY) return energyPorts.computeIfAbsent(side,
+            if (cap == ForgeCapabilities.ENERGY && !kind.logistics()) return energyPorts.computeIfAbsent(side,
                     d -> LazyOptional.of(() -> new EnergyPort(d))).cast();
         }
         return super.getCapability(cap,side);
@@ -198,15 +226,24 @@ final class Machine extends BlockEntity implements MenuProvider {
     private final class ItemsPort implements IItemHandler {
         final Direction face;
         ItemsPort(Direction face) { this.face=face; }
-        public int getSlots() { return 3; }
-        public int getSlotLimit(int i) { return 64; }
-        public boolean isItemValid(int i, ItemStack s) { return i>=0 && i<2; }
+        public int getSlots() { return slots.getSlots(); }
+        public int getSlotLimit(int i) { return slots.getSlotLimit(i); }
+        public boolean isItemValid(int i, ItemStack s) {
+            if (kind==Kind.INDUSTRIAL_WAREHOUSE) return i>=0 && i<getSlots();
+            if (kind==Kind.INDUSTRIAL_CONVEYOR) return i==0 && face==getBlockState().getValue(MachineBlock.FACING).getOpposite();
+            return i>=0 && i<2;
+        }
         public ItemStack getStackInSlot(int i) { return portAllowed(face) ? slots.getStackInSlot(i).copy() : ItemStack.EMPTY; }
         public ItemStack insertItem(int i,ItemStack s,boolean sim) {
             return isItemValid(i,s) && portAllowed(face) ? slots.insertItem(i,s,sim) : s;
         }
         public ItemStack extractItem(int i,int n,boolean sim) {
-            return i==2 && n>0 && portAllowed(face) ? slots.extractItem(i,n,sim) : ItemStack.EMPTY;
+            boolean output = switch (kind) {
+                case INDUSTRIAL_WAREHOUSE -> i>=0 && i<getSlots();
+                case INDUSTRIAL_CONVEYOR -> i==0 && face==getBlockState().getValue(MachineBlock.FACING);
+                default -> i==2;
+            };
+            return output && n>0 && portAllowed(face) ? slots.extractItem(i,n,sim) : ItemStack.EMPTY;
         }
     }
     private final class EnergyPort implements IEnergyStorage {
@@ -232,6 +269,7 @@ final class Machine extends BlockEntity implements MenuProvider {
     protected void saveAdditional(CompoundTag tag) {
         super.saveAdditional(tag);
         tag.put("Slots",slots.serializeNBT());
+        if (!kind.logistics()) tag.put("Upgrade",upgrade.serializeNBT());
         if (owner != null) {
             tag.putUUID("Owner",owner);
             tag.putUUID("Town",town);
@@ -246,7 +284,8 @@ final class Machine extends BlockEntity implements MenuProvider {
     }
     public void load(CompoundTag tag) {
         super.load(tag);
-        slots.deserializeNBT(tag.getCompound("Slots"));
+        if (tag.contains("Slots",Tag.TAG_COMPOUND)) slots.deserializeNBT(tag.getCompound("Slots"));
+        if (tag.contains("Upgrade",Tag.TAG_COMPOUND)) upgrade.deserializeNBT(tag.getCompound("Upgrade"));
         owner=tag.hasUUID("Owner") ? tag.getUUID("Owner") : null;
         town=tag.hasUUID("Town") ? tag.getUUID("Town") : null;
         plot=tag.hasUUID("Plot") ? tag.getUUID("Plot") : null;

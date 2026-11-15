@@ -68,7 +68,7 @@ final class Reports {
         send(s,"industry.report",name,active);
         var total=data.totals(id,national,-1);
         var today=data.totals(id,national,s.getServer().overworld().getGameTime()/24000);
-        for (String product:List.of("steel_ingot","machine_parts","textile")) total.putIfAbsent(Industry.id(product),0L);
+        for (String product:List.of("steel_ingot","machine_parts","textile","steel_plate","industrial_component")) total.putIfAbsent(Industry.id(product),0L);
         total.forEach((item,n) -> {
             var registered=ForgeRegistries.ITEMS.getValue(item);
             Component label=registered==null ? Component.literal(item.toString()) : registered.getDescription();

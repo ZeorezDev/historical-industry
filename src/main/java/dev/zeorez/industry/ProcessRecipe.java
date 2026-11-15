@@ -38,6 +38,7 @@ record ProcessRecipe(ResourceLocation id, Kind machine, List<Input> inputs, Item
         public ProcessRecipe fromJson(ResourceLocation id, JsonObject json) {
             Kind kind = Arrays.stream(Kind.values()).filter(k -> k.id().equals(GsonHelper.getAsString(json, "machine")))
                     .findFirst().orElseThrow(() -> new JsonSyntaxException("Unknown machine"));
+            if (kind.logistics()) throw new JsonSyntaxException("Logistics blocks cannot process recipes");
             var rows = GsonHelper.getAsJsonArray(json, "inputs");
             if (rows.size() < 1 || rows.size() > 2) throw new JsonSyntaxException("Expected one or two inputs");
             var inputs = new ArrayList<Input>();

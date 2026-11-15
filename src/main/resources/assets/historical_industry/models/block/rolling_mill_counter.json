@@ -1,0 +1,354 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "historical_industry:block/rolling_mill",
+    "machine": "historical_industry:block/rolling_mill"
+  },
+  "elements": [
+    {
+      "name": "counter_steel_barrel",
+      "from": [
+        4,
+        7.2,
+        9.35
+      ],
+      "to": [
+        12,
+        10.8,
+        11.65
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            4.25,
+            1,
+            4.75
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            2,
+            4.25,
+            2.375,
+            4.75
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            1,
+            4.25,
+            2,
+            4.75
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            2.375,
+            4.25,
+            2.75,
+            4.75
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            2.75,
+            4.25,
+            3.75,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            3.75,
+            4.25,
+            4.75,
+            4.625
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "counter_steel_shoulder_-1",
+      "from": [
+        4,
+        7.85,
+        8.7
+      ],
+      "to": [
+        12,
+        10.15,
+        9.35
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4.375,
+            4.875,
+            5.375,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            6.375,
+            4.875,
+            6.5,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            5.375,
+            4.875,
+            6.375,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            6.5,
+            4.875,
+            6.625,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            6.625,
+            4.875,
+            7.625,
+            5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            7.625,
+            4.875,
+            8.625,
+            5
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "counter_steel_shoulder_1",
+      "from": [
+        4,
+        7.85,
+        11.65
+      ],
+      "to": [
+        12,
+        10.15,
+        12.3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            8.75,
+            4.875,
+            9.75,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            10.75,
+            4.875,
+            10.875,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            9.75,
+            4.875,
+            10.75,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            10.875,
+            4.875,
+            11,
+            5.25
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            11,
+            4.875,
+            12,
+            5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            12,
+            4.875,
+            13,
+            5
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "counter_rust_band_4.4",
+      "from": [
+        4.4,
+        10.8,
+        9.7
+      ],
+      "to": [
+        5.1,
+        10.94,
+        11.3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            7.125,
+            5.375,
+            7.25,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            7.375,
+            5.375,
+            7.625,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            7.25,
+            5.375,
+            7.375,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            7.625,
+            5.375,
+            7.875,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            7.875,
+            5.375,
+            8,
+            5.625
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            8,
+            5.375,
+            8.125,
+            5.625
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "counter_rust_band_10.7",
+      "from": [
+        10.7,
+        10.8,
+        9.7
+      ],
+      "to": [
+        11.4,
+        10.94,
+        11.3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            8.25,
+            5.375,
+            8.375,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            8.5,
+            5.375,
+            8.75,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            8.375,
+            5.375,
+            8.5,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            8.75,
+            5.375,
+            9,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            9,
+            5.375,
+            9.125,
+            5.625
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            9.125,
+            5.375,
+            9.25,
+            5.625
+          ],
+          "texture": "#machine"
+        }
+      }
+    }
+  ]
+}

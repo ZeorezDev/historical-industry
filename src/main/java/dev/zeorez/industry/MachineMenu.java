@@ -12,9 +12,9 @@ final class MachineMenu extends AbstractContainerMenu {
     final ContainerData data;
     static MachineMenu client(int id, Inventory inv, FriendlyByteBuf buf) {
         var pos = buf.readBlockPos();
-        return new MachineMenu(id,inv,(Machine)inv.player.level().getBlockEntity(pos),new ItemStackHandler(3),new SimpleContainerData(3));
+        return new MachineMenu(id,inv,(Machine)inv.player.level().getBlockEntity(pos),new ItemStackHandler(3),new ItemStackHandler(1),new SimpleContainerData(3));
     }
-    MachineMenu(int id, Inventory inv, Machine m, ItemStackHandler slots, ContainerData data) {
+    MachineMenu(int id, Inventory inv, Machine m, ItemStackHandler slots, ItemStackHandler upgrade, ContainerData data) {
         super(Industry.MENU.get(),id);
         machine=m;
         this.data=data;
@@ -22,6 +22,10 @@ final class MachineMenu extends AbstractContainerMenu {
         addSlot(new SlotItemHandler(slots,1,57,42));
         addSlot(new SlotItemHandler(slots,2,126,42) {
             public boolean mayPlace(ItemStack stack) { return false; }
+        });
+        addSlot(new SlotItemHandler(upgrade,0,150,18) {
+            public boolean mayPlace(ItemStack stack) { return Upgrade.accepts(stack); }
+            public int getMaxStackSize() { return 1; }
         });
         for (int row=0;row<3;row++)
             for (int col=0;col<9;col++) addSlot(new Slot(inv,9+row*9+col,8+18*col,84+18*row));
@@ -39,7 +43,8 @@ final class MachineMenu extends AbstractContainerMenu {
         Slot slot=slots.get(index);
         ItemStack stack=slot.getItem(), old=stack.copy();
         if (stack.isEmpty()) return ItemStack.EMPTY;
-        boolean moved=index<3 ? moveItemStackTo(stack,3,39,true) : moveItemStackTo(stack,0,2,false);
+        boolean moved = index<4 ? moveItemStackTo(stack,4,40,true) : Upgrade.accepts(stack)
+                ? moveItemStackTo(stack,3,4,false) : moveItemStackTo(stack,0,2,false);
         if (!moved) return ItemStack.EMPTY;
         if (stack.isEmpty()) slot.set(ItemStack.EMPTY); else slot.setChanged();
         slot.onTake(p,stack);
