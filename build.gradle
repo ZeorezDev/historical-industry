@@ -16,9 +16,17 @@ minecraft {
     runs {
         configureEach {
             workingDirectory project.file('run')
+            property 'mixin.env.remapRefMap','true'
+            property 'mixin.env.refMapRemappingFile',layout.buildDirectory.file('createSrgToMcp/output.srg').get().asFile.absolutePath
             mods { historical_industry { source sourceSets.main } }
         }
-        client {}
+        client {
+            if (project.hasProperty('industryClientTest')) {
+                mods { industry_integration { source sourceSets.integration } }
+                property 'industry.clientTest','true'
+                args '--width','854','--height','480'
+            }
+        }
         server { args '--nogui' }
     }
 }
@@ -38,6 +46,7 @@ dependencies {
 }
 
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+tasks.matching { it.name in ['runClient','runServer'] }.configureEach { dependsOn 'createSrgToMcp' }
 jar.finalizedBy('reobfJar')
 
 tasks.register('integrationJar', Jar) {

@@ -1,0 +1,24 @@
+{
+  "type": "historical_industry:process",
+  "machine": "machine_workshop",
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "historical_industry:steel_ingot"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:copper_ingot"
+      },
+      "count": 1
+    }
+  ],
+  "ticks": 100,
+  "fe_per_tick": 16,
+  "result": {
+    "item": "historical_industry:machine_parts",
+    "count": 1
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "block.historical_industry.coal_generator": "Coal Generator",
+  "block.historical_industry.industrial_furnace": "Industrial Furnace",
+  "block.historical_industry.machine_workshop": "Machine Workshop",
+  "block.historical_industry.textile_factory": "Textile Factory",
+  "item.historical_industry.steel_ingot": "Steel Ingot",
+  "item.historical_industry.machine_parts": "Machine Parts",
+  "item.historical_industry.textile": "Textile",
+  "industry.land": "Place this machine on a verified Industrial plot.",
+  "industry.denied": "Access denied by the parcel or claim.",
+  "industry.info": "Use /industry factories, /industry production or /industry nation <name>.",
+  "industry.location": "%s · %s (%s) · Owner %s",
+  "industry.factories": "Loaded factories in your town: %s",
+  "industry.no_nation": "Nation not found.",
+  "industry.no_town": "You do not belong to a town.",
+  "industry.report": "%s — Industrial report · Active factories: %s",
+  "industry.quantity": "%s: %s total · %s today"
+}

@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[47,48)"
+license="GPL-3.0-only"
+[[mods]]
+modId="historical_industry"
+version="0.1.0"
+displayName="Historical Industry"
+description="Industrial production and national output for Historical Nations Core."
+[[dependencies.historical_industry]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1]"
+ordering="NONE"
+side="BOTH"
+[[dependencies.historical_industry]]
+modId="forge"
+mandatory=true
+versionRange="[47.4.28,48)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.historical_industry]]
+modId="historical_nations"
+mandatory=true
+versionRange="[0.6.0]"
+ordering="AFTER"
+side="BOTH"

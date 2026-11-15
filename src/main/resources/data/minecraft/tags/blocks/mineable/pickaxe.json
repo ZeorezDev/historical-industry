@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "historical_industry:coal_generator",
+    "historical_industry:industrial_furnace",
+    "historical_industry:machine_workshop",
+    "historical_industry:textile_factory"
+  ]
+}

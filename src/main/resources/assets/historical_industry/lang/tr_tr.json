@@ -1,0 +1,18 @@
+{
+  "block.historical_industry.coal_generator": "Kömür Jeneratörü",
+  "block.historical_industry.industrial_furnace": "Sanayi Fırını",
+  "block.historical_industry.machine_workshop": "Makine Atölyesi",
+  "block.historical_industry.textile_factory": "Tekstil Fabrikası",
+  "item.historical_industry.steel_ingot": "Çelik Külçesi",
+  "item.historical_industry.machine_parts": "Makine Parçaları",
+  "item.historical_industry.textile": "Kumaş",
+  "industry.land": "Makineyi doğrulanmış bir Sanayi arsasına yerleştirin.",
+  "industry.denied": "Arsa veya claim izniniz yok.",
+  "industry.info": "/industry factories, /industry production veya /industry nation <ad> komutunu kullanın.",
+  "industry.location": "%s · %s (%s) · Sahibi %s",
+  "industry.factories": "Şehrinizde yüklü fabrikalar: %s",
+  "industry.no_nation": "Devlet bulunamadı.",
+  "industry.no_town": "Bir şehre üye değilsiniz.",
+  "industry.report": "%s — Sanayi raporu · Çalışan fabrika: %s",
+  "industry.quantity": "%s: toplam %s · bugün %s"
+}

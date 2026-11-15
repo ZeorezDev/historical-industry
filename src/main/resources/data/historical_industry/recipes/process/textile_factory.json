@@ -1,0 +1,24 @@
+{
+  "type": "historical_industry:process",
+  "machine": "textile_factory",
+  "inputs": [
+    {
+      "ingredient": {
+        "tag": "minecraft:wool"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:string"
+      },
+      "count": 1
+    }
+  ],
+  "ticks": 60,
+  "fe_per_tick": 8,
+  "result": {
+    "item": "historical_industry:textile",
+    "count": 2
+  }
+}
