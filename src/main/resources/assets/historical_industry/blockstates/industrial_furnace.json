@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "historical_industry:block/industrial_furnace",
+      "y": 0
+    },
+    "facing=east,lit=false": {
+      "model": "historical_industry:block/industrial_furnace",
+      "y": 90
+    },
+    "facing=south,lit=false": {
+      "model": "historical_industry:block/industrial_furnace",
+      "y": 180
+    },
+    "facing=west,lit=false": {
+      "model": "historical_industry:block/industrial_furnace",
+      "y": 270
+    },
+    "facing=north,lit=true": {
+      "model": "historical_industry:block/industrial_furnace_running",
+      "y": 0
+    },
+    "facing=east,lit=true": {
+      "model": "historical_industry:block/industrial_furnace_running",
+      "y": 90
+    },
+    "facing=south,lit=true": {
+      "model": "historical_industry:block/industrial_furnace_running",
+      "y": 180
+    },
+    "facing=west,lit=true": {
+      "model": "historical_industry:block/industrial_furnace_running",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,374 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "historical_industry:block/industrial_furnace",
+    "machine": "historical_industry:block/industrial_furnace"
+  },
+  "elements": [
+    {
+      "name": "drive_gear_hub",
+      "from": [
+        1.8,
+        4.8,
+        1.6
+      ],
+      "to": [
+        5,
+        8,
+        2.25
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            5.625,
+            0.5,
+            6.125
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            1,
+            5.625,
+            1.125,
+            6.125
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            0.5,
+            5.625,
+            1,
+            6.125
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            1.125,
+            5.625,
+            1.25,
+            6.125
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            1.25,
+            5.625,
+            1.75,
+            5.75
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            1.75,
+            5.625,
+            2.25,
+            5.75
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_cog_0",
+      "from": [
+        2.85,
+        4,
+        1.6
+      ],
+      "to": [
+        3.95,
+        8.8,
+        2.24
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            8.75,
+            4.875,
+            9,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            9.25,
+            4.875,
+            9.375,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            9,
+            4.875,
+            9.25,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            9.375,
+            4.875,
+            9.5,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            9.5,
+            4.875,
+            9.75,
+            5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            9.75,
+            4.875,
+            10,
+            5
+          ],
+          "texture": "#machine"
+        }
+      },
+      "rotation": {
+        "axis": "z",
+        "angle": -45,
+        "origin": [
+          3.4,
+          6.4,
+          1.6
+        ],
+        "rescale": false
+      }
+    },
+    {
+      "name": "drive_cog_1",
+      "from": [
+        2.85,
+        4,
+        1.63
+      ],
+      "to": [
+        3.95,
+        8.8,
+        2.27
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            10.125,
+            4.875,
+            10.375,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            10.625,
+            4.875,
+            10.75,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            10.375,
+            4.875,
+            10.625,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            10.75,
+            4.875,
+            10.875,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            10.875,
+            4.875,
+            11.125,
+            5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            11.125,
+            4.875,
+            11.375,
+            5
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_cog_2",
+      "from": [
+        2.85,
+        4,
+        1.66
+      ],
+      "to": [
+        3.95,
+        8.8,
+        2.3
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            11.5,
+            4.875,
+            11.75,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            12,
+            4.875,
+            12.125,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            11.75,
+            4.875,
+            12,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            12.125,
+            4.875,
+            12.25,
+            5.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            12.25,
+            4.875,
+            12.5,
+            5
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            12.5,
+            4.875,
+            12.75,
+            5
+          ],
+          "texture": "#machine"
+        }
+      },
+      "rotation": {
+        "axis": "z",
+        "angle": 45,
+        "origin": [
+          3.4,
+          6.4,
+          1.6
+        ],
+        "rescale": false
+      }
+    },
+    {
+      "name": "drive_cog_3",
+      "from": [
+        1,
+        5.85,
+        1.71
+      ],
+      "to": [
+        5.8,
+        6.95,
+        2.34
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            12.375,
+            6.25,
+            13,
+            6.5
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            13.625,
+            6.25,
+            13.75,
+            6.5
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            13,
+            6.25,
+            13.625,
+            6.5
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            13.75,
+            6.25,
+            13.875,
+            6.5
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            13.875,
+            6.25,
+            14.5,
+            6.375
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            14.5,
+            6.25,
+            15.125,
+            6.375
+          ],
+          "texture": "#machine"
+        }
+      }
+    }
+  ]
+}

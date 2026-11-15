@@ -1,0 +1,147 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "historical_industry:block/machine_workshop",
+    "machine": "historical_industry:block/machine_workshop"
+  },
+  "elements": [
+    {
+      "name": "drive_piston",
+      "from": [
+        7,
+        7.6,
+        7
+      ],
+      "to": [
+        9,
+        11.2,
+        9
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            3.125,
+            4.125,
+            3.375,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            3.625,
+            4.125,
+            3.875,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            3.375,
+            4.125,
+            3.625,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            3.875,
+            4.125,
+            4.125,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            4.125,
+            4.125,
+            4.375,
+            4.375
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            4.375,
+            4.125,
+            4.625,
+            4.375
+          ],
+          "texture": "#machine"
+        }
+      }
+    },
+    {
+      "name": "drive_die",
+      "from": [
+        5.4,
+        6.8,
+        6
+      ],
+      "to": [
+        10.6,
+        8.1,
+        10
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            4.75,
+            4.125,
+            5.5,
+            4.375
+          ],
+          "texture": "#machine"
+        },
+        "east": {
+          "uv": [
+            6.25,
+            4.125,
+            6.75,
+            4.375
+          ],
+          "texture": "#machine"
+        },
+        "south": {
+          "uv": [
+            5.5,
+            4.125,
+            6.25,
+            4.375
+          ],
+          "texture": "#machine"
+        },
+        "west": {
+          "uv": [
+            6.75,
+            4.125,
+            7.25,
+            4.375
+          ],
+          "texture": "#machine"
+        },
+        "up": {
+          "uv": [
+            7.25,
+            4.125,
+            8,
+            4.625
+          ],
+          "texture": "#machine"
+        },
+        "down": {
+          "uv": [
+            8,
+            4.125,
+            8.75,
+            4.625
+          ],
+          "texture": "#machine"
+        }
+      }
+    }
+  ]
+}
