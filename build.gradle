@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version '6.0.54'
+}
+
+group = 'dev.zeorez'
+version = '0.1.0'
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+sourceSets {
+    integration { compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath }
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+    runs {
+        configureEach {
+            workingDirectory project.file('run')
+            mods { historical_industry { source sourceSets.main } }
+        }
+        client {}
+        server { args '--nogui' }
+    }
+}
+
+repositories {
+    flatDir { dirs project.findProperty('coreLibDir') ?: '../historicalnationscore/build/libs' }
+    exclusiveContent {
+        forRepository { maven { url = 'https://chocolateminecraft.com/maven' } }
+        filter { includeGroup 'xaero.pac' }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.4.28'
+    implementation fg.deobf('dev.zeorez:historical_nations:0.6.0')
+    implementation 'xaero.pac:open-parties-and-claims-forge-1.20.1:0.33.0:dev'
+}
+
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+jar.finalizedBy('reobfJar')
+
+tasks.register('integrationJar', Jar) {
+    from sourceSets.integration.output
+    archiveBaseName = 'industry-integration-tests'
+    destinationDirectory = layout.buildDirectory.dir('integration')
+}
+reobf { integrationJar {} }
+tasks.named('integrationJar') { finalizedBy 'reobfIntegrationJar' }
