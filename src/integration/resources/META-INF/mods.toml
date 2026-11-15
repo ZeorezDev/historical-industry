@@ -1,0 +1,13 @@
+modLoader="javafml"
+loaderVersion="[47,48)"
+license="GPL-3.0-only"
+[[mods]]
+modId="industry_integration"
+version="1.0"
+displayName="Historical Industry dedicated server tests"
+[[dependencies.industry_integration]]
+modId="historical_industry"
+mandatory=true
+versionRange="[0.1.0]"
+ordering="AFTER"
+side="SERVER"
